@@ -50,7 +50,7 @@ A simple Python keylogger that captures keystrokes on a Windows target PC and se
    - Example:
      ```json
      {
-         "ip_address": "192.168.105.74",
+         "ip_address": "",
          "port_number": 8080,
          "time_interval": 10
      }
