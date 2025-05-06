@@ -77,6 +77,8 @@ Refer to the [Aetriks Relay Server Repository](https://github.com/frHimanshu/aet
 
 ---
 
+6. The `exe_to_vba.py` file converts win64file.exe to output_vba.txt . [When Final Steps are finished, win64file.exe is created]
+
 ## Legal and Ethical Use
 
 This project is for **educational purposes only**.  
