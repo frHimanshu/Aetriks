@@ -45,8 +45,8 @@ A simple Python keylogger that captures keystrokes on a Windows target PC and se
    pip install -r requirements.txt
    ```
 
-3. Edit the `config.json` file:
-   - Update the `ip_address` field with the IP address of the Linux machine running the Aetriks Relay Server.
+3. Edit the `config.json` file in Aetriks-relay directory:
+   - Update the `ip_address` field with the IP address of the Linux machine on which the Aetriks Relay server is gonna be hosted.
    - Example:
      ```json
      {
